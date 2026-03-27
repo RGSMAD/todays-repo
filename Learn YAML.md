@@ -1,196 +1,330 @@
 🚀 How I’ll Teach You YAML (Structured Plan)
 
 ✅ Phase 1: Basics
+
 What is YAML
+
 Syntax (key-value, indentation)
+
 Data types (Normal and Advanced)
+
 Advanced Data types: 
+
 &#x20; Lists \& dictionaries
+
 &#x20; Nested structures
 
 ✅ Phase 2: Hands-on (Important)
+
 Write your own YAML
+
 Understand the YAML
+
 Common errors and Fixing errors
+
 Real GitHub Actions YAML breakdown
+
 Multi-job pipelines
 
 ✅ Phase 3: Advanced (Real DevOps)
+
 Matrix, Variables, reuse of variables (environment variables) \& Secrets
+
 Conditional execution, context variables, inputs and outputs
+
 Convert logic → YAML
+
 Reusable workflows
 
 
 ✅ Phase 1: Basics
+
 YAML (YAML Ain’t Markup Language) is a human-readable data serialization format used to represent structured data. It is commonly used for writing configuration files and enables easy storage, transfer, and processing of data by machines.
 
 YAML:
 
 ❌ Markup Language
+
 ❌ Programming Language
+
 ❌ Scripting Language
+
 ✅ Data Serialization Format
 
+
 ✔ “Not a markup language”
+
 &#x09;==> Not uses tags like HTML/XML
+
 ✔ “Not a programming language”
+
 &#x09;==> Doesn't use Loops, Conditions, Functions
+
 ✔ “Not a scripting language”
+
 &#x09;==> It is just for writing config, not an executable script.
+
 ✔ “Data Serialization Format looks like JSON”
+
 &#x09;==> Used for writing config in structured data format(Key-Value pairs).
 
 Does data serialisation language is something like writing the meaningful data in a serialized way I mean in a chronological order?
 
+
 ❌ “serialized = chronological order”
+
 👉 Not correct
+
 Serialization has nothing to do with time or order of events.
 
+
 Serialization = Structuring data
+
 NOT = Ordering data by time
 
+
 ✅ Simple Meaning of Data Serialization
+
 Data serialization means converting data into a structured format so it can be easily stored, transferred, or processed.
+
 
 Data serialization format: Raw information converted into structured data.
 
+
 YAML = Structured Data Format + Configuration Language
+
 
 Imagine you have this data in your mind:
 
+
 Name: Madhav
+
 Skills: AWS, Terraform
 
 
 
 JSON:
+
 \------
+
 {
+
 &#x20; "name": "Madhav",
+
 &#x20; "skills": \["AWS", "Terraform"]
+
 }
 
+
 YAML:
+
 \------
+
 name: Madhav
+
 skills: 
+
 &#x20; - AWS
+
 &#x20; - Terraform
+
 
 Why do we need YAML?
 
+
 👉 YAML is used to:
+
 Represent data in structured way to save them in files and to send over network or to share between systems. So tools (GitHub Actions, Kubernetes, Terraform) can understand it.
 
+
 YAML (Key-value based and Indentation):
+
 Foundation of YAML lies in understanding the indentation-based structure and Key-value pairs.
 
+
 Indentation:
+
 \---------------
+
 YAML becomes easy or painful based on just one thing → indentation.
+
 
 YAML doesn't follow any tags like markup languages or any kind of braces like programming languages, it just follows indentation like python. Indentation is nothing but grouping the data as block by only using leading whitespaces, grouping the data with whitespaces before the data.
 
+
 To be more clear, If two lines have same number of whitespaces before the starting position of data, they are said to be the data of same level.
+
 
 Indentation = Structure = Relationship
 
+
 It defines:
+
 Parent → Child
+
 Grouping
+
 Hierarchy
 
+
 More indentation = deeper level (child)
+
 Less indentation = higher level (parent)
 
+
 Ex:
+
 \----
+
 employee:
+
 &#x20; name: Madhav
+
 &#x20; experience:
+
 &#x20;   years: 2.7
 
+
 structure:
+
 \-----------
+
 employee (parent)
+
 &#x20;├── name (first child)
+
 &#x20;└── experience (second child)
+
 &#x20;      └── years (child of second child)
+
 
 Golden and standard rules of indentation:
 
+
 ✔ Rule 1: Use 2 spaces (standard)
+
 &#x09;✔ 2 spaces → best practice
+
 &#x09;❌ 1 or 3 → inconsistent
 
+
 ✔ Rule 2: Never use tabs (Number of spaces in tab differs with respect to file editors)
+
 &#x09;❌ Tabs break YAML
+
 &#x09;✔ Only spaces
 
+
 ✔ Rule 3: Align siblings
+
 &#x09;In the above examples, name and experience are siblings. So, align them properly to say that they belong to same hierarchy and are siblings.
 
+
 Key-Value pairs:
+
 \-----------------
+
 As said, all information in YAML is represented in Key-Value pairs, just like JSON, which means any raw information has a key and a value, where key describes what information it is and value defines the actual data.
+
 
 In the above example employee information is being represented in YAML. So the root level key will be employee. And it has more information in the form of key-value pairs.
 
+
 Firstly, name of the employee in the form of "name: Madhav" and then experience is another key containing few more key-value pairs, here it is only one i.e., years: 2.7
+
 
 But, see the below example, the experience may contain more information.
 
+
 employees:
+
 &#x20; - name: Madhav
+
 &#x20;   experience: 
+
 &#x20;     years: 2.7
 
+
 &#x20; - name: Jaspreet Bumrah
+
 &#x20;   experience:
+
 &#x20;     years: 14
+
 &#x20;     role: premium-fast bowler
+
 &#x20;     franchise: Mumbai Indians
 
+
 Tree structure:
+
 \----------------
+
 employees
+
 ├── \[0]
+
 │   ├── name: Madhav
+
 │   └── experience
+
 │       └── years: 2.7
+
 │
+
 └── \[1]
+
 &#x20;   ├── name: Jaspreet Bumrah
+
 &#x20;   └── experience
+
 &#x20;       ├── years: 14
+
 &#x20;       ├── role: premium-fast bowler
+
 &#x20;       └── franchise: Mumbai Indians
 
+
 Standard practice of Key-Value pairs in YAML:
+
 Keys must always be in lower case followed by colon(:) and then a space and then values.
+
 
 key: value
 
+
 As said, each key will have values. But the values could be either string or numerical values or could be Boolean or could be set of strings or set of numbers or map of different key-value pairs called as objects. And these different types of values are called as data types.
+
 
 Let's deep dive into different data types and how can we assign values of different data types to a key.
 
+
 Data types in YAML:
+
 \--------------------
+
 1\. String:
+
 name: Rajoli Girisai Madhav
+
 city: Hyderabad
 
+
 (or)
+
 
 name: 'Rajoli Girisai Madhav'
+
 city: 'Hyderabad'
+
 
 (or)
 
+
 name: "Rajoli Girisai Madhav"
+
 city: "Hyderabad"
+
 
 2\. Numbers(Integers, floating numbers):
 number: 5
